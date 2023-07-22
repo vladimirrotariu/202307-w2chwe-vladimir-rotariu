@@ -29,6 +29,15 @@ class GameOfLife {
       }
     }
   }
+
+  displayState() {
+    let statePositioned = "";
+    for (let row = 0; row < this.dimensionSquareGrid; row++) {
+      statePositioned += this.currentState[row].join("") + "<br/>";
+    }
+
+    return statePositioned;
+  }
 }
 
 export default GameOfLife;
