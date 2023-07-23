@@ -1,5 +1,7 @@
 class GameOfLife {
   dimensionSquareGrid;
+  lifePattern;
+  deathPattern;
 
   constructor(dimensionSquareGrid, lifePattern, deathPattern) {
     this.dimensionSquareGrid = dimensionSquareGrid;
@@ -30,8 +32,6 @@ class GameOfLife {
           this.currentGridState[row][cell] = this.deathPattern;
       }
     }
-
-    return this.currentGridState;
   }
 
   displayState() {
