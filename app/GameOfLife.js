@@ -5,7 +5,26 @@ class GameOfLife {
     this.dimensionSquareGrid = dimensionSquareGrid;
   }
 
-  createDeadGrid() {
+  populateDeadGrid(initialPopulationRate) {
+    this.#createDeadGrid();
+    for (let row = 0; row < this.dimensionSquareGrid; row++) {
+      for (let cell = 0; cell < this.dimensionSquareGrid; cell++) {
+        if (Math.random() <= initialPopulationRate)
+          this.currentState[row][cell] = "⚫";
+      }
+    }
+  }
+
+  displayState() {
+    let statePositioned = "";
+    for (let row = 0; row < this.dimensionSquareGrid; row++) {
+      statePositioned += this.currentState[row].join(" ") + "<br/>";
+    }
+
+    return statePositioned;
+  }
+
+  #createDeadGrid() {
     const grid = [];
 
     for (let row = 0; row < this.dimensionSquareGrid; row++) {
@@ -14,29 +33,11 @@ class GameOfLife {
 
     for (let row = 0; row < this.dimensionSquareGrid; row++) {
       for (let cell = 0; cell < this.dimensionSquareGrid; cell++) {
-        grid[row][cell] = "🍂";
+        grid[row][cell] = "🔴";
       }
     }
 
     this.currentState = grid;
-  }
-
-  populateDeadGrid(initialPopulationRate) {
-    for (let row = 0; row < this.dimensionSquareGrid; row++) {
-      for (let cell = 0; cell < this.dimensionSquareGrid; cell++) {
-        if (Math.random() <= initialPopulationRate)
-          this.currentState[row][cell] = "🍃";
-      }
-    }
-  }
-
-  displayState() {
-    let statePositioned = "";
-    for (let row = 0; row < this.dimensionSquareGrid; row++) {
-      statePositioned += this.currentState[row].join("") + "<br/>";
-    }
-
-    return statePositioned;
   }
 }
 
