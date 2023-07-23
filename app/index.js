@@ -1,25 +1,25 @@
 import GameOfLife from "./GameOfLife.js";
 
-const dimensionSquareGrid = 25;
-const initialPopulationRate = 0.21;
-const numberGenerations = 10 ** 5;
-let countTransitions = 0;
+const dimensionSquareGrid = 30;
+const initialPopulationRate = 0.14;
+const numberGenerations = 10 ** 4;
+const speedTransition = 600;
+const lifePattern = "🔵";
+const deathPattern = "⚫";
+let countTransitions = 1;
 
-const game = new GameOfLife(dimensionSquareGrid);
+const game = new GameOfLife(dimensionSquareGrid, lifePattern, deathPattern);
+game.createDeadGrid();
+game.populateDeadGrid(initialPopulationRate);
 
 const startGameOfLife = () => {
-  game.populateDeadGrid(initialPopulationRate);
   const gameFormatted = game.displayState();
+  const gameContainer = document.querySelector(".game-container");
+  setTimeout(() => {
+    gameContainer.innerHTML = gameFormatted;
+  }, countTransitions * speedTransition);
 
-  const delayStates = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, countTransitions * 1400);
-  });
-
-  delayStates.then(() => {
-    document.querySelector(".game-container").innerHTML = gameFormatted;
-  });
+  game.changeStateGrid();
 };
 
 for (let generation = 0; generation <= numberGenerations; generation++) {

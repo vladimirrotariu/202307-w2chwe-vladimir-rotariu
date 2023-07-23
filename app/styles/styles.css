@@ -6,8 +6,9 @@
 
 body {
   margin: 0;
-  font-size: min(2.7vh, 2.7vw);
+  font-size: min(2.2vh, 2.2vw);
   background-color: whitesmoke;
+  line-height: min(2.2vh, 2.2vw);
 }
 
 main {
