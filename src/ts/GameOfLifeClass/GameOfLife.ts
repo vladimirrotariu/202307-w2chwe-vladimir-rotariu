@@ -1,31 +1,31 @@
 class GameOfLife {
-  dimensionSquareGrid;
-  lifePattern;
-  deathPattern;
+  private currentGridState = [[""]];
 
-  constructor(dimensionSquareGrid, lifePattern, deathPattern) {
-    this.dimensionSquareGrid = dimensionSquareGrid;
-    this.lifePattern = lifePattern;
-    this.deathPattern = deathPattern;
-  }
+  constructor(
+    private readonly dimensionSquareGrid: number,
+    private readonly lifePattern: string,
+    private readonly deathPattern: string,
+  ) {}
 
-  createDeadGrid() {
-    const grid = [];
+  createDeadGrid(): void {
+    const grid = [[""]];
 
     for (let row = 0; row < this.dimensionSquareGrid; row++) {
       grid.push([]);
     }
 
+    grid.shift();
+
     for (let row = 0; row < this.dimensionSquareGrid; row++) {
       for (let cell = 0; cell < this.dimensionSquareGrid; cell++) {
-        grid[row][cell] = this.lifePattern;
+        grid[row].push(this.lifePattern);
       }
     }
 
     this.currentGridState = grid;
   }
 
-  populateDeadGrid(initialPopulationRate) {
+  populateDeadGrid(initialPopulationRate: number): void {
     for (let row = 0; row < this.dimensionSquareGrid; row++) {
       for (let cell = 0; cell < this.dimensionSquareGrid; cell++) {
         if (Math.random() <= initialPopulationRate)
@@ -34,7 +34,7 @@ class GameOfLife {
     }
   }
 
-  displayState() {
+  displayState(): string {
     let statePositioned = "";
     for (let row = 0; row < this.dimensionSquareGrid; row++) {
       statePositioned += this.currentGridState[row].join("") + "<br/>";
@@ -43,7 +43,7 @@ class GameOfLife {
     return statePositioned;
   }
 
-  changeStateGrid() {
+  changeStateGrid(): void {
     const oldGridState = this.currentGridState;
     for (let row = 0; row < this.dimensionSquareGrid; row++) {
       for (let cell = 0; cell < this.dimensionSquareGrid; cell++) {
@@ -52,7 +52,7 @@ class GameOfLife {
     }
   }
 
-  #changeStateCell(row, cell, oldGridState) {
+  #changeStateCell(row: number, cell: number, oldGridState: string[][]): void {
     const neighbours = [];
     switch (true) {
       case row === 0 && cell === 0:
@@ -135,7 +135,7 @@ class GameOfLife {
         this.#changeStateMarginCell(neighbours, oldGridState, row, cell);
 
         break;
-        
+
       default:
         neighbours.push(oldGridState[row + 1][cell]);
         neighbours.push(oldGridState[row + 1][cell + 1]);
@@ -152,7 +152,12 @@ class GameOfLife {
     }
   }
 
-  #changeStateCornerCell(neighbours, oldGridState, row, cell) {
+  #changeStateCornerCell(
+    neighbours: string[],
+    oldGridState: string[][],
+    row: number,
+    cell: number,
+  ): void {
     const deathCount = this.#countDeathNeighbours(neighbours);
 
     if (oldGridState[row][cell] === this.deathPattern && deathCount === 0) {
@@ -168,7 +173,12 @@ class GameOfLife {
     this.currentGridState[row][cell] = oldGridState[row][cell];
   }
 
-  #changeStateMarginCell(neighbours, oldGridState, row, cell) {
+  #changeStateMarginCell(
+    neighbours: string[],
+    oldGridState: string[][],
+    row: number,
+    cell: number,
+  ): void {
     const deathCount = this.#countDeathNeighbours(neighbours);
 
     if (oldGridState[row][cell] === this.deathPattern && deathCount === 2) {
@@ -189,7 +199,12 @@ class GameOfLife {
     this.currentGridState[row][cell] = oldGridState[row][cell];
   }
 
-  #changeStateMiddleCell(neighbours, oldGridState, row, cell) {
+  #changeStateMiddleCell(
+    neighbours: string[],
+    oldGridState: string[][],
+    row: number,
+    cell: number,
+  ): void {
     const deathCount = this.#countDeathNeighbours(neighbours);
 
     if (oldGridState[row][cell] === this.deathPattern && deathCount === 5) {
@@ -210,7 +225,7 @@ class GameOfLife {
     this.currentGridState[row][cell] = oldGridState[row][cell];
   }
 
-  #countDeathNeighbours(neighbours) {
+  #countDeathNeighbours(neighbours: string[]): number {
     let deathCount = 0;
     neighbours.forEach((neighbour) => {
       if (neighbour === this.deathPattern) deathCount++;
