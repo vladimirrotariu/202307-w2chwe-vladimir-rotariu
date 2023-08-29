@@ -1,4 +1,5 @@
-import GameOfLife from "./GameOfLife.js";
+/* eslint-disable spaced-comment */
+import GameOfLife from "./ts/GameOfLifeClass/GameOfLife";
 
 const dimensionSquareGrid = 30;
 const initialPopulationRate = 0.15;
@@ -15,10 +16,10 @@ const startGameOfLife = () => {
 
   const getGameOfLifeState = () => {
     const gameFormatted = game.displayState();
-    const gameContainer = document.querySelector(".game-container");
+    const gameContainer = document.querySelector(".game-container")!;
     setTimeout(() => {
       gameContainer.innerHTML = gameFormatted;
-    }, countTransitions * speedTransition);
+    }, countTransitions * speedTransition); //If we replace speedTransition with a function, we may obtain non-linear time.
 
     game.changeStateGrid();
   };
