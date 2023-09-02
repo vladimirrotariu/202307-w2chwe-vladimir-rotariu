@@ -1,3 +1,10 @@
+<div>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white&labelColor=3178C6" alt="TypeScript" />
+<img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white&labelColor=E34F26" alt="HTML5" />
+<img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white&labelColor=1572B6" alt="CSS3" />
+<img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white&labelColor=F05032" alt="Git" />
+<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white&labelColor=2088FF" alt="GitHub Actions" />
+</div>
 # Conway's  Game of Life
 
 ## Description
@@ -11,7 +18,8 @@ Conway's Game of Life is a notorious [zero-player game](https://en.wikipedia.org
 
 ## Tech stack:
 * Web: TypeScript, HTML5, CSS3.
-* OOP principles
+* OOP/SOLID principles.
+* CI/CD: GitHubActions.
 
 ## Implementation
 The parameters of a 'game' instance of the ```GameOfLife``` class:
