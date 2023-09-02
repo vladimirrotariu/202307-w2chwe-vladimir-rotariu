@@ -5,6 +5,7 @@
 <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white&labelColor=F05032" alt="Git" />
 <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white&labelColor=2088FF" alt="GitHub Actions" />
 </div>
+
 # Conway's  Game of Life
 
 ## Description
@@ -18,8 +19,8 @@ Conway's Game of Life is a notorious [zero-player game](https://en.wikipedia.org
 
 ## Tech stack:
 * Web: TypeScript, HTML5, CSS3.
-* OOP/SOLID principles.
 * CI/CD: GitHubActions.
+* OOP/SOLID principles.
 
 ## Implementation
 The parameters of a 'game' instance of the ```GameOfLife``` class:
