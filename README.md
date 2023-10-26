@@ -19,7 +19,7 @@ Conway's Game of Life is a notorious [zero-player game](https://en.wikipedia.org
 
 ## Tech stack:
 * Web: TypeScript, HTML5, CSS3.
-* CI/CD: GitHubActions.
+* CI/CD: GitHub Actions.
 * OOP/SOLID principles.
 
 ## Implementation
